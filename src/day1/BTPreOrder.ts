@@ -1,17 +1,18 @@
-function walk(node: BinaryNode<number> | null, path: number[]): number[] {
-    if (!node) {
-        return path;
+function walk(curr: BinaryNode<number> | null, path: number[]): void {
+    if (!curr) {
+        return;
     }
 
     // pre
-    path.push(node.value);
+    path.push(curr.value);
 
     //recurse
-    walk(node.left, path);
-    walk(node.right, path);
-
-    return path;
+    walk(curr.left, path);
+    walk(curr.right, path);
 }
+
 export default function pre_order_search(head: BinaryNode<number>): number[] {
-    return walk(head, []);
+    let path: number[] = [];
+    walk(head, path);
+    return path;
 }
